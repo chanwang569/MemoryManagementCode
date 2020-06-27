@@ -3,6 +3,28 @@
 using namespace std;
 namespace jj06
 {
+	class Foo
+	{
+	public:
+		int _id;
+		long _data;
+		string _str;
+
+	public:
+		static void* operator new(size_t size);
+		static void  operator delete(void* deadObject, size_t size);
+		static void* operator new[](size_t size);
+		static void  operator delete[](void* deadObject, size_t size);
+
+		Foo() : _id(0), _data(0) { cout << "default ctor. this=" << this << " id=" << _id << endl; }
+		Foo(int i) : _id(i) { cout << "ctor. this=" << this << " id=" << _id << endl; }
+		//virtual 
+		~Foo() { cout << "dtor. this=" << this << " id=" << _id << endl; }
+
+		//不加 virtual dtor, sizeof = 12, new Foo[5] => operator new[]() 的 size 參數是 64, 
+		//加了 virtual dtor, sizeof = 16, new Foo[5] => operator new[]() 的 size 參數是 84, 
+		//上述二例，多出來的 4 可能就是個 size_t 欄位用來放置 array size. 
+	};
 	void* Foo::operator new(size_t size)
 	{
 		Foo* p = (Foo*)malloc(size);  

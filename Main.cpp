@@ -18,9 +18,9 @@ int main(int argc, char* argv[])
 	
 	jj09::test_static_allocator_3();
 	
-	/*jj10::test_macros_for_static_allocator();			
+	jj10::test_macros_for_static_allocator();			
 	
-	jj11::test_G29_alloc();
+	/*jj11::test_G29_alloc();
 	
 	jj12::test_delete_and_default_for_new();	
 	
