@@ -12,12 +12,11 @@ namespace jj04
 	{
 		Screen *p;
 		if (!freeStore) {
-			//linked list 是空的，所以攫取一大塊 memory
-			//以下呼叫的是 global operator new
+			// The link list is empty, so we get a large bulk of memory with global operator new
 			size_t chunk = screenChunk * size;
 			freeStore = p =
 				reinterpret_cast<Screen*>(new char[chunk]);
-			//將分配得來的一大塊 memory 當做 linked list 般小塊小塊串接起來
+			// using linked list to create a linked chain to maintain the allocated memory. 
 			for (; p != &freeStore[screenChunk-1]; ++p)
 				p->next = p+1;
 			p->next = 0;
@@ -29,9 +28,9 @@ namespace jj04
 	
 	
 	//! void Screen::operator delete(void *p)		//(1)
-	void Screen::operator delete(void *p, size_t)	//(2)二擇一 
+	void Screen::operator delete(void *p, size_t)	//(2) both OK. 
 	{
-		//將 deleted object 收回插入 free list 前端
+		//Recyle the memory and added back to the front of free list. 
 		(static_cast<Screen*>(p))->next = freeStore;
 		freeStore = static_cast<Screen*>(p);
 }
@@ -50,7 +49,7 @@ namespace jj04
 			p[i] = new Screen(i);         
 		}
 		
-		//輸出前 10 個 pointers, 用以比較其間隔 
+		// Output the first 10 pointers to check the interval 
 		for (i=0; i< 10; ++i)
 		{
 			cout << p[i] << endl;     

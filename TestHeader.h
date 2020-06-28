@@ -77,6 +77,7 @@ namespace jj06
 #include <complex>
 namespace jj09
 {
+	using namespace std;
 	class allocator
 	{
 	private:
@@ -84,14 +85,55 @@ namespace jj09
 			struct obj* next;  //embedded pointer
 		};
 	public:
-		void* allocate(size_t);
-		void  deallocate(void*, size_t);
-		void  check();
+		void* allocate(size_t size)
+		{
+			obj* p;
+
+			if (!freeStore) {
+				//Empty 
+				size_t chunk = CHUNK * size;
+				freeStore = p = (obj*)malloc(chunk);
+
+				//cout << "empty. malloc: " << chunk << "  " << p << endl;
+
+				// Use embedded pointer to maintain the memory link list. 
+				for (int i = 0; i < (CHUNK - 1); ++i) {
+					p->next = (obj*)((char*)p + size);
+					p = p->next;
+				}
+				p->next = NULL;  //last       
+			}
+			p = freeStore;
+			freeStore = freeStore->next;
+
+			//cout << "p= " << p << "  freeStore= " << freeStore << endl;
+
+			return p;
+		}
+		void  deallocate(void* p, size_t)
+		{
+			// Recyle the object, insert to the front of free list. 
+			((obj*)p)->next = freeStore;
+			freeStore = (obj*)p;
+		}
+		void  check()
+		{
+			obj* p = freeStore;
+			int count = 0;
+
+			while (p) {
+				cout << p << endl;
+				p = p->next;
+				count++;
+			}
+			cout << count << endl;
+		}
 
 	private:
 		obj* freeStore = nullptr;
 		const int CHUNK = 5;
 	};
+
 	void test_static_allocator_3();
 }
 namespace jj10

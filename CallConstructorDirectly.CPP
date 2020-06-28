@@ -31,7 +31,7 @@ namespace jj02
 
 		//! pstr->string::string("jjhou");  
 		//[Error] 'class std::basic_string<char>' has no member named 'string'
-		//! pstr->~string();	//crash -- 其語法語意都是正確的, crash 只因為上一行被 remark 起來嘛.  
+		//! pstr->~string();	// crash. Even though grammar and semantics are correct. 
 		//cout << "str= " << *pstr << endl;
 
 		A* pA = new A(1);         	//ctor. this=000307A8 id=1

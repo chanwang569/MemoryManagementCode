@@ -15,25 +15,28 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="JJ01.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JJ02.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JJ04.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JJ05.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JJ06.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="JJ09.CPP">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaysForMemoryAllocation.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassAllocator.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CallConstructorDirectly.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassAllocator2.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="OverloadOperatorNewAndArrayNew.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticAllocator.CPP">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="StaticAllocatorWithMacros.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

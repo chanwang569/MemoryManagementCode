@@ -10,9 +10,11 @@ void jj01::test_primitives()
 		void* p1 = malloc(512);	//512 bytes | directly call _nh_malloc_dbg to allocate memory
 		free(p1);
 		
+		// C++  expression new & delete
 		complex<int>* p2 = new complex<int>; //operator new -> _nh_malloc_dbg -> constructor
 		delete p2;             
 		
+		// Global operator new & delete. 
 		void* p3 = ::operator new(512); //512 bytes | ->_nh_malloc_dbg  
 		::operator delete(p3);
 		

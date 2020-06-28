@@ -30,7 +30,6 @@ allocator class_name::myAlloc;
 	//in class implementation file
 	IMPLEMENT_POOL_ALLOC(Foo)
 
-
 		//  in class definition file
 		class Goo {
 		DECLARE_POOL_ALLOC()

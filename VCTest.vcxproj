@@ -120,12 +120,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="JJ01.CPP" />
-    <ClCompile Include="JJ02.CPP" />
-    <ClCompile Include="JJ04.CPP" />
-    <ClCompile Include="JJ05.CPP" />
-    <ClCompile Include="JJ06.CPP" />
-    <ClCompile Include="JJ09.CPP" />
+    <ClCompile Include="StaticAllocatorWithMacros.cpp" />
+    <ClCompile Include="WaysForMemoryAllocation.CPP" />
+    <ClCompile Include="CallConstructorDirectly.CPP" />
+    <ClCompile Include="ClassAllocator.CPP" />
+    <ClCompile Include="ClassAllocator2.CPP" />
+    <ClCompile Include="OverloadOperatorNewAndArrayNew.CPP" />
+    <ClCompile Include="StaticAllocator.CPP" />
     <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>

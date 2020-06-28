@@ -9,36 +9,35 @@ namespace jj05
 	
 	void* Airplane::operator new(size_t size)
 	{
-		//如果大小錯誤，轉交給 ::operator new()
+		//Fallback to use operator new. if the size is not correctly passed in. 
 		if (size != sizeof(Airplane))
 			return ::operator new(size);
 		
 		Airplane* p = headOfFreeList;  
 		
-		//如果 p 有效，就把list頭部移往下一個元素
+		// If valid p exists, move list's head to next position. 
 		if (p)
 			headOfFreeList = p->next;
 		else {
-			//free list 已空。配置一塊夠大記憶體，
-			//令足夠容納 BLOCK_SIZE 個 Airplanes
+			//The free list is empty. Allocate a large buck of memory. 
+			//So that BLOCK_SIZE of Aireplane can be kept. 
 			Airplane* newBlock = static_cast<Airplane*>
 				(::operator new(BLOCK_SIZE * sizeof(Airplane)));
-			//組成一個新的 free list：將小區塊串在一起，但跳過 
-			//#0 元素，因為要將它傳回給呼叫者。
+			
+			//Generate a free list to maintain the allocated memory. 
 			for (int i = 1; i < BLOCK_SIZE-1; ++i)
 				newBlock[i].next = &newBlock[i+1];
-			newBlock[BLOCK_SIZE-1].next = 0; //以null結束
+			newBlock[BLOCK_SIZE-1].next = 0; //end with NULL
 			
-			// 將 p 設至頭部，將 headOfFreeList 設至
-			// 下一個可被運用的小區塊。
+			// Move p to the head. Then move the head to next node
 			p = newBlock;
 			headOfFreeList = &newBlock[1];
 		}
 		return p;
 	}
 	
-	// operator delete 接獲一塊記憶體。
-	// 如果它的大小正確，就把它加到 free list 的前端
+	// Operator delete to delete memory directly if allocated by global function new. 
+	// Or add the memory back to free list so that can be further reuse.
 	void Airplane::operator delete(void* deadObject,
 		size_t size)
 	{
@@ -69,7 +68,7 @@ namespace jj05
 			p[i] = new Airplane;     
 		
 		
-		//隨機測試 object 正常否 
+		//Random testing. 
 		p[1]->set(1000,'A'); 	
 		p[5]->set(2000,'B');
 		p[9]->set(500000,'C');
@@ -77,7 +76,7 @@ namespace jj05
 		cout << p[5] << ' ' << p[5]->getType() << ' ' << p[5]->getMiles() << endl;
 		cout << p[9] << ' ' << p[9]->getType() << ' ' << p[9]->getMiles() << endl; 
 		
-		//輸出前 10 個 pointers, 用以比較其間隔 
+		//Output first 10 pointer to check interval. 
 		for (i=0; i< 10; ++i)  	   
 			cout << p[i] << endl; 		 
 		
