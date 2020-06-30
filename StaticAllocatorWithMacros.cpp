@@ -41,7 +41,7 @@ allocator class_name::myAlloc;
 	};
 	//in class implementation file
 	IMPLEMENT_POOL_ALLOC(Goo)
-	void test_macros_for_static_allocator()
+		void test_macros_for_static_allocator()
 	{
 		cout << "\n\n\ntest_macro_for_static_allocator().......... \n";
 

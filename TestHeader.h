@@ -40,7 +40,7 @@ namespace jj05
 	//ref. Effective C++ 2e, item10
 	//per-class allocator 
 	
-	class Airplane {   //Ö§Ô® customized memory management
+	class Airplane {   // customized memory management
 	private:
 		struct AirplaneRep {
 			unsigned long miles;
@@ -48,8 +48,8 @@ namespace jj05
 		};
 		private:
 			union {
-				AirplaneRep rep;  //´Ëá˜Œ¦ used object
-				Airplane* next;   //´Ëá˜Œ¦ free list
+				AirplaneRep rep;  // used object
+				Airplane* next;   // free list
 			};
 		public:
 			unsigned long getMiles() { return rep.miles; }
